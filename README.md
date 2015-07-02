@@ -1,12 +1,16 @@
--># StraightJS<-
-->## The Anti-framework<-
+# StraightJS
+## The Anti-framework
 
 (under construction)
 
 No "patterns.”
+
 No decorations.  You stay out of our code, we stay out of yours.
+
 No convention.  No configuration.
+
 No views.  Write your own.
+
 No components.  No modules.  No "pods" or "packages" or "controllers.”  You say you like them, but you don’t.
 
 ##Features
@@ -31,9 +35,13 @@ Safely invoke a method on another object.  That's decoupled enough!
 
 Talk to anyone, listen to anyone.  No actions bubbling up or whatever bubbling down.  Ride the straight talk express.
 ```
-     _s.listen("phone", homeObj, "onMessageReceived");    // register homeObj to receive "phone" messages
-     _s.broadcast(ETObj, "phone", "onCallback", someData);   // ET phone home, register callback for home phone ET
+     // register homeObj to receive "phone" messages
+     _s.listen("phone", homeObj, "onMessageReceived");
+
+     // ET phone home, register callback for home phone ET
+     _s.broadcast(ETObj, "phone", "onCallback", someData);
 ```
+
 ###Set, Get, Remove
 
 Well, an equals sign would be better, but at least you can traverse nested JSON objects and arrays with RESTful paths.  Convenient?  Peculiar?  We don’t know.
@@ -70,7 +78,7 @@ Plug an “adapter” or whatever into your JSON object and drive changes from a
 
 Straight.js.  Simple, immature, unminified.  You hate it.  You can get it from the src folder.
 
-###Want to install it as a module?  I guess we can’t stop you.
+##Want to install it as a module?  I guess we can’t stop you.
 
      (TBD...)
      npm install straightjs
@@ -92,8 +100,8 @@ We’re trying it out [here](https://github.com/alloplastic/Choreo).
 
 Watch your mouth.  What about plain Node/Express as the server and Straight.js + Pure.js + jQuery on the client?  Intriguing!  Why are you just sitting there?
 
-->Straight.js<-
-->The framework that stays out of your bedroom<-
+#Straight.js#
+##The framework that stays out of your bedroom
 
 Want speed?  Wait two years and buy a new PC.
 
