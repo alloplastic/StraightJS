@@ -223,6 +223,50 @@
 			return true;
 		},
 
+		// insert an item into an array at an index specified as the leaf of propPath; allow appending via 
+		// a propPath that ends with an index equal to the length of the array.
+		insert: function(obj, propPath, value) {
+
+			if (!propPath)
+				return false;
+
+			var prop = propPath;
+			var lastDelim = prop.lastIndexOf(this.delim);
+
+			// find the parent object of the leaf to be deleted
+			// TBD: reuse this pattern to simplify these functions
+			var parent = obj;
+			if (lastDelim >= 0) {
+				prop = propPath.substring(lastDelim+1);
+				var prefixPath = propPath.substring(0, lastDelim);
+				parent = this.get(obj, prefixPath);
+			}
+
+			if (parent && prop && prop.length>0) {
+
+				var index = parseInt(prop);
+				if (!isNaN(index)) {   // integer properties are expected to be array indices
+					if (Array.isArray(parent) && index >= 0 && index <= parent.length) {
+						if (index == parent.length) {
+							parent.push(value);
+						} else {
+							parent.splice(index, 0, value);
+						}
+					} else {
+						return false;
+					}
+				} else {
+					return false;
+				}
+
+			} else {
+				return false;
+			}
+
+			this.queueObservationEvent(obj, propPath, value, "insert");
+			return true;
+		},
+
 		observe: function(obj, propPath, listeningObj, funcName) {
 
 			if (!funcName) funcName = "onDataChanged";
@@ -279,7 +323,7 @@
 		// objects being observed.
 		stopObservation: function(obj, propPath, listeningObj) {
 
-			var o = this.observadObjects.indexOf(obj);
+			var o = this.observedObjects.indexOf(obj);
 			if (o < 0) return;
 
 			var observation = this.observations[o];
